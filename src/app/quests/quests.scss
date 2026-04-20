@@ -52,6 +52,22 @@
   min-height: 5rem;
 }
 
+.quest-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--tqt-border);
+  border-radius: 6px;
+  background: var(--tqt-surface);
+}
+
+.quest-progress-text {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--tqt-text);
+}
+
 .btn {
   cursor: pointer;
   border-radius: 6px;

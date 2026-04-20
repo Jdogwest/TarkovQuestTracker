@@ -2,11 +2,32 @@
   <header class="header">
     <h1 class="title">{{ title() }}</h1>
     <nav class="tabs">
-      <a routerLink="/quests" routerLinkActive="tab-active" class="tab">Квесты</a>
-      <a routerLink="/keys" routerLinkActive="tab-active" class="tab">Ключи</a>
+      <button
+        type="button"
+        class="tab"
+        [class.tab-active]="activeTab() === 'quests'"
+        (click)="setTab('quests')"
+      >
+        Квесты
+      </button>
+      <button
+        type="button"
+        class="tab"
+        [class.tab-active]="activeTab() === 'keys'"
+        (click)="setTab('keys')"
+      >
+        Ключи
+      </button>
     </nav>
   </header>
   <main class="main">
-    <router-outlet />
+    @switch (activeTab()) {
+      @case ('quests') {
+        <app-quests />
+      }
+      @case ('keys') {
+        <app-keys />
+      }
+    }
   </main>
 </div>

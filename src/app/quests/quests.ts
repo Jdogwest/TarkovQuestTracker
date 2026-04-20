@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { ProgressBar } from '../shared/progress-bar/progress-bar';
+
 const STORAGE_KEY = 'TQTQuests';
 
 export interface QuestItem {
@@ -12,7 +14,7 @@ export interface QuestItem {
 @Component({
   selector: 'app-quests',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ProgressBar],
   templateUrl: './quests.html',
   styleUrl: './quests.scss',
 })
@@ -32,6 +34,15 @@ export class QuestsPage {
       return list;
     }
     return list.filter((x) => x.name.toLowerCase().includes(q));
+  });
+
+  /** По всему списку квестов, не по строке поиска */
+  readonly questStats = computed(() => {
+    const list = this.quests();
+    const total = list.length;
+    const completed = list.reduce((n, q) => n + (q.isCompleted ? 1 : 0), 0);
+    const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
+    return { total, completed, percent };
   });
 
   constructor() {

@@ -29,6 +29,13 @@
     />
   </label>
 
+  <div class="quest-progress">
+    <p class="quest-progress-text">
+      {{ questStats().completed }}/{{ questStats().total }} квестов выполнено ({{ questStats().percent }}%)
+    </p>
+    <app-progress-bar [percent]="questStats().percent" />
+  </div>
+
   <ul class="list">
     @for (quest of filteredQuests(); track quest.name) {
       <li class="list-item">

@@ -1,0 +1,10 @@
+<div
+  class="track"
+  role="progressbar"
+  [attr.aria-valuenow]="clampedPercent()"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  [attr.aria-label]="'Прогресс: ' + clampedPercent() + '%'"
+>
+  <div class="fill" [style.width.%]="clampedPercent()"></div>
+</div>

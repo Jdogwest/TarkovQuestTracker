@@ -27,6 +27,9 @@
   text-decoration: none;
   color: var(--tqt-muted);
   border: 1px solid transparent;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
 }
 
 .tab:hover {
