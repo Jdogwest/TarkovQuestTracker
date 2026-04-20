@@ -1,0 +1,44 @@
+<div class="page">
+  <div class="toolbar">
+    <button type="button" class="btn" (click)="toggleImport()">
+      {{ showImport ? 'Скрыть импорт' : 'Импорт квестов' }}
+    </button>
+  </div>
+
+  @if (showImport) {
+    <div class="import-block">
+      <p class="hint">По одному названию на строку (Enter между квестами)</p>
+      <textarea
+        class="input textarea"
+        rows="6"
+        [placeholder]="placeholder"
+        [(ngModel)]="importText"
+      ></textarea>
+      <button type="button" class="btn" (click)="importQuests()">Добавить из списка</button>
+    </div>
+  }
+
+  <label class="field search-field">
+    <span class="label">Поиск</span>
+    <input
+      type="search"
+      class="input"
+      placeholder="Фильтр по названию"
+      [value]="searchQuery()"
+      (input)="updateSearch($any($event.target).value)"
+    />
+  </label>
+
+  <ul class="list">
+    @for (quest of filteredQuests(); track quest.name) {
+      <li class="list-item">
+        <label class="quest-row">
+          <input type="checkbox" [checked]="quest.isCompleted" (change)="toggleQuest(quest)" />
+          <span [class.completed]="quest.isCompleted">{{ quest.name }}</span>
+        </label>
+      </li>
+    } @empty {
+      <li class="list-empty">Нет квестов</li>
+    }
+  </ul>
+</div>
